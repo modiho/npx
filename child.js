@@ -30,7 +30,7 @@ function spawn (cmd, args, opts) {
   opts = opts || {}
   opts.shell = opts.shell || process.platform === 'win32'
   return new Promise((resolve, reject) => {
-    const child = cp.spawn(cmd, args, opts)
+    const child = cp.spawn(escapeArg(cmd, true), args, opts)
     let stdout = ''
     let stderr = ''
     child.stdout && child.stdout.on('data', d => { stdout += d })
